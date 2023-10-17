@@ -1,3 +1,22 @@
-<h1>Pessoa: {{name}}</h1>
+<h1>Pessoas</h1>
 
-<p>{{cpf}}</p>
+<div class="input-group rounded">
+    <input type="search" class="form-control rounded" placeholder="Pesquisar por uma pessoa" aria-label="Search"
+        aria-describedby="search-addon" />
+    <span class="input-group-text border-0" id="search-addon">
+        <i class="fas fa-search"></i>
+    </span>
+</div>
+<hr>
+<section id="pessoas">
+
+    <div class="card text-dark mb-3">
+        <h5 class="card-header">Pedro C</h5>
+        <div class="card-body">
+            {{name}}
+            <hr>
+            {{cpf}}
+        </div>
+    </div>
+
+</section>
