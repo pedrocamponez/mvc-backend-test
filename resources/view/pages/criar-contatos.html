@@ -1,16 +1,35 @@
 <h1>Criar um contato</h1>
 
-<section id="contatos">
+<section>
 
-    <div class="card text-dark mb-3">
-        <h5 class="card-header">Carolina B</h5>
-        <div class="card-body">
-            Nome do Contato
-            <hr>
-            Tipo do Contato
-            <hr>
-            Descricao do Contato
+    <h3>Digite os dados de um contato:</h3>
+
+    <form action="" method="post">
+
+        <div class="form-group w-25 mb-3">
+            <label>Nome do Contato</label>
+            <input type="text" class="form-control" name="nome" required>
         </div>
-    </div>
+
+        <div class="form-group w-25 mb-3">
+            <label>Pessoa atrelada ao contato</label>
+            <input type="text" class="form-control" name="pessoa-atrelada" required>
+        </div>
+
+        <div class="form-group w-25 mb-3">
+            <label>Descricao do contato</label>
+            <input type="text" class="form-control" name="descricao-contato" required>
+        </div>
+
+        <div class="form-group w-25 mb-3">
+            <label>Tipo do contato: Telefone ou Email</label>
+            <input type="text" class="form-control" name="tipo-contato" required>
+        </div>
+
+        <div class="form-group mt-3">
+            <button type="submit" class="btn btn-success">Criar</button>
+        </div>
+
+    </form>
 
 </section>

@@ -3,7 +3,7 @@
 namespace App\Controller\Pages;
 
 use \App\Utils\View;
-use \App\Model\Entity\Organization;
+use \App\Entity\Pessoa;
 
 class CriarContatos extends Page
 {
@@ -14,7 +14,7 @@ class CriarContatos extends Page
      */
     public static function getCriarContatos()
     {
-        $obOrganization = new Organization;
+        $obPessoa = new Pessoa('Pedro Camponez', '09211233322');
 
         $content = View::render('Pages/criar-contatos', []);
 

@@ -3,7 +3,7 @@
 namespace App\Controller\Pages;
 
 use \App\Utils\View;
-use \App\Model\Entity\Organization;
+use \App\Entity\Pessoa;
 
 class Contatos extends Page
 {
@@ -14,9 +14,12 @@ class Contatos extends Page
      */
     public static function getContatos()
     {
-        $obOrganization = new Organization;
+        $obPessoa = new Pessoa('Pedro Camponez', '09211233322');
 
-        $content = View::render('Pages/contatos', []);
+        $content = View::render('Pages/contatos', [
+            'name' => $obPessoa->nome,
+            'cpf' => $obPessoa->cpf
+        ]);
 
         return parent::getPage('Contatos - Magazord Backend', $content);
     }

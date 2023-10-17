@@ -3,7 +3,7 @@
 namespace App\Controller\Pages;
 
 use \App\Utils\View;
-use \App\Model\Entity\Organization;
+use \App\Entity\Pessoa;
 
 class Pessoas extends Page
 {
@@ -14,11 +14,11 @@ class Pessoas extends Page
      */
     public static function getPessoas()
     {
-        $obOrganization = new Organization;
+        $obPessoa = new Pessoa('Carolina Burni', 'xdxdxdxd');;
 
         $content = View::render('Pages/pessoas', [
-            'name' => $obOrganization->name,
-            'cpf' => $obOrganization->cpf
+            'name' => $obPessoa->nome,
+            'cpf' => $obPessoa->cpf
         ]);
 
         return parent::getPage('Pessoas - Magazord Backend', $content);

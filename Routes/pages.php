@@ -24,8 +24,15 @@ $obRouter->get('/pessoas/{idPessoa}', [
     }
 ]);
 
-// Rota para criar uma pessoa
+// Rota para pagina de criar uma pessoa
 $obRouter->get('/criar-pessoas', [
+    function () {
+        return new Response(200, Pages\CriarPessoas::getCriarPessoas());
+    }
+]);
+
+// Rota para submit de criar uma pessoa
+$obRouter->post('/criar-pessoas', [
     function () {
         return new Response(200, Pages\CriarPessoas::getCriarPessoas());
     }
@@ -38,9 +45,19 @@ $obRouter->get('/contatos', [
     }
 ]);
 
-// Rota para criar um contato
+// Rota para pagina de criar um contato
 $obRouter->get('/criar-contatos', [
     function () {
+        return new Response(200, Pages\CriarContatos::getCriarContatos());
+    }
+]);
+
+// Rota para submit e criar um contato
+$obRouter->post('/criar-contatos', [
+    function ($request) {
+        echo "<pre>";
+        print_r($request);
+        echo "</pre>";
         return new Response(200, Pages\CriarContatos::getCriarContatos());
     }
 ]);

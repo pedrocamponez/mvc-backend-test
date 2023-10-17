@@ -3,7 +3,7 @@
 namespace App\Controller\Pages;
 
 use \App\Utils\View;
-use \App\Model\Entity\Organization;
+use \App\Entity\Pessoa;
 
 class Home extends Page
 {
@@ -14,11 +14,11 @@ class Home extends Page
      */
     public static function getHome()
     {
-        $obOrganization = new Organization;
+        $obPessoa = new Pessoa('Pedro Camponez', '09211233322');
 
         $content = View::render('Pages/home', [
-            'name' => $obOrganization->name,
-            'cpf' => $obOrganization->cpf
+            'name' => $obPessoa->nome,
+            'cpf' => $obPessoa->cpf
         ]);
 
         return parent::getPage('Magazord Backend', $content);
