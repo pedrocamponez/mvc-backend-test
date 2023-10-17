@@ -27,7 +27,7 @@ class View
      */
     private static function getContentView($view)
     {
-        $file = __DIR__.'/../../resources/view/'.$view.'.html';
+        $file = __DIR__ . '/../../resources/view/' . $view . '.html';
         return file_exists($file) ? file_get_contents($file) : '';
     }
 
@@ -47,7 +47,7 @@ class View
 
         // Encontra todas as chaves a serem substituidas 
         preg_match_all('/{{(.*?)}}/', $contentView, $matches);
-        
+
         // Substitui as chaves encontradas pelos valores correspondentes (para resolver bug de URL localhost/src/%7B%7BURL%7D%7D)
         foreach ($matches[1] as $match) {
             if (array_key_exists($match, $vars)) {
