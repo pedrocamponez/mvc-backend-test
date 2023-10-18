@@ -2,6 +2,7 @@
 
 use \App\Http\Response;
 use \App\Controller\Pages;
+use \App\Model;
 
 // Rota para home
 $obRouter->get('/', [
@@ -18,7 +19,7 @@ $obRouter->get('/pessoas', [
 ]);
 
 // Rota para pessoa buscada
-$obRouter->get('/pessoas/{idPessoa}', [
+$obRouter->post('/pessoas/{idPessoa}', [
     function ($idPessoa) {
         return new Response(200, 'Pessoa ' . $idPessoa);
     }
@@ -33,8 +34,8 @@ $obRouter->get('/criar-pessoas', [
 
 // Rota para submit de criar uma pessoa
 $obRouter->post('/criar-pessoas', [
-    function () {
-        return new Response(200, Pages\CriarPessoas::getCriarPessoas());
+    function ($data) {
+        return new Response(200, Model\CriarPessoaModel::criarPessoa($data));
     }
 ]);
 

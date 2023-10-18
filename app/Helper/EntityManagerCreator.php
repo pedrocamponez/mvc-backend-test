@@ -13,14 +13,14 @@ class EntityManagerCreator
     public static function createEntityManager(): EntityManager
     {
         $config = ORMSetup::createAttributeMetadataConfiguration(
-            paths: array(__DIR__ . "/src"),
+            paths: array(__DIR__ . "/.."),
             isDevMode: true,
         );
 
         $connection = DriverManager::getConnection([
             'dbname'   => 'magazord-test',
-            'user'     => 'magazord_username',
-            'password' => 'magazord_password', // Ou vazio
+            'user'     => 'root',
+            'password' => '', // Ou vazio
             'host'     => 'localhost',
             'driver'   => 'pdo_mysql',
             'path' => __DIR__ . '/db',
