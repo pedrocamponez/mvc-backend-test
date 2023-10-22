@@ -47,6 +47,11 @@ class Pessoa
         return $this->contatos;
     }
 
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
     public function getNome(): string
     {
         return $this->nome;

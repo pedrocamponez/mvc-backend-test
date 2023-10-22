@@ -5,4 +5,35 @@
         <hr>
         Tipo do contato: {{tipo}}
     </div>
+    <div class="btn-group mt-3" role="group">
+        <a href="{{URL}}/editar-contato/{{id}}" class="btn btn-primary">Editar</a>
+        <button class="btn btn-danger" onclick="deletarContato(id)">Excluir</button>
+    </div>
 </div>
+
+<script>
+function deletarContato(id) {
+    if (confirm("Tem certeza que deseja excluir este contato?")) {
+        fetch(`{{URL}}/deletar-contato/${id}`, {
+            method: 'POST'
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Network response was not ok.');
+        })
+        .then(data => {
+            if (data.message) {
+                alert(data.message);
+            } else {
+                throw new Error('Invalid response from server.');
+            }
+            location.reload();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+}
+</script>

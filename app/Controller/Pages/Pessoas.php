@@ -29,8 +29,10 @@ class Pessoas extends Page
     
         foreach ($pessoasData as $pessoa) {
             $pessoas .= View::render('Pages/single/single-pessoa', [
+                'id' => $pessoa->getId(),
                 'nome' => $pessoa->getNome(),
-                'cpf' => $pessoa->getCpf()
+                'cpf' => $pessoa->getCpf(),
+                // 'contato' => $pessoa->mostrarContatos()
             ]);
         }
     
@@ -47,5 +49,29 @@ class Pessoas extends Page
 
         return parent::getPage('Pessoas - Magazord Backend', $content);
     }
+
+    public static function atualizarPessoa($id, $data)
+    {
+        // Implement logic to update the Pessoa entity with ID $id using $data
+        // Return appropriate Response message
+    }
+
+    public function deletarPessoa($id)
+    {
+        try {
+            $pessoa = $this->pessoaModel->getPessoaById($id);
+    
+            if (!$pessoa) {
+                return json_encode(['error' => 'Pessoa not found']);
+            }
+    
+            $this->pessoaModel->deletePessoa($pessoa);
+    
+            return json_encode(['message' => 'Pessoa deleted successfully']);
+        } catch (\Exception $e) {
+            return json_encode(['error' => $e->getMessage()]);
+        }
+    }
+    
 
 }

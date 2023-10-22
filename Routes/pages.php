@@ -35,13 +35,37 @@ $obRouter->get('/criar-pessoas', [
 $obRouter->post('/criar-pessoas', [
     function () {
         $data = $_POST ?? null;
-        // $cpf = $_POST['CPF'] ?? null;
-        // var_dump($data);
         if ($data) {
             return new Response(200, Pages\CriarPessoas::criarPessoa($data));
         } else {
             echo 'Campos obrigatórios não foram preenchidos';
         }
+    }
+]);
+
+// Rota para editar uma pessoa
+$obRouter->get('/editar-pessoa/{id}', [
+    function ($id) {
+        return new Response(200, Pages\CriarPessoas::getCriarPessoas($id));
+    }
+]);
+
+// Rota para atualizar uma pessoa
+$obRouter->post('/editar-pessoa/{id}', [
+    function ($id) {
+        $data = $_POST ?? null;
+        if ($data) {
+            return new Response(200, Pages\Pessoas::atualizarPessoa($id, $data));
+        } else {
+            echo 'Campos obrigatórios não foram preenchidos';
+        }
+    }
+]);
+
+// Rota para deletar uma pessoa
+$obRouter->post('/deletar-pessoa/{id}', [
+    function ($id) {
+        return new Response(200, Pages\Pessoas::deletarPessoa($id));
     }
 ]);
 
@@ -63,12 +87,36 @@ $obRouter->get('/criar-contatos', [
 $obRouter->post('/criar-contatos', [
     function () {
         $data = $_POST ?? null;
-        // $cpf = $_POST['CPF'] ?? null;
-        // var_dump($data);
         if ($data) {
             return new Response(200, Pages\CriarContatos::criarContato($data));
         } else {
             echo 'Campos obrigatórios não foram preenchidos';
         }
+    }
+]);
+
+// Rota para editar um contato
+$obRouter->get('/editar-contato/{id}', [
+    function ($id) {
+        return new Response(200, Pages\CriarContatos::getCriarContatos($id));
+    }
+]);
+
+// Rota para atualizar um contato
+$obRouter->post('/editar-contato/{id}', [
+    function ($id) {
+        $data = $_POST ?? null;
+        if ($data) {
+            return new Response(200, Pages\Contatos::atualizarContato($id, $data));
+        } else {
+            echo 'Campos obrigatórios não foram preenchidos';
+        }
+    }
+]);
+
+// Rota para deletar um contato
+$obRouter->post('/deletar-contato/{id}', [
+    function ($id) {
+        return new Response(200, Pages\Contatos::deletarContato($id));
     }
 ]);

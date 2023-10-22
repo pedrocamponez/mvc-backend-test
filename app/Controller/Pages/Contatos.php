@@ -10,6 +10,8 @@ use App\Model\ContatoModel;
 class Contatos extends Page
 {
 
+    private $contatoModel;
+
     /**
      * Metodo responsavel por retornar o conteudo da view de Contatos
      * @return string
@@ -20,7 +22,6 @@ class Contatos extends Page
         $contatos = '';
         $entityManager = HelperAlias\EntityManagerCreator::createEntityManager();
         
-        // Get the list of pessoas from the database
         $contatoModel = new ContatoModel($entityManager);
         $contatosData = $contatoModel->getContatos();
     
@@ -47,5 +48,27 @@ class Contatos extends Page
         ]);
 
         return parent::getPage('Contatos - Magazord Backend', $content);
+    }
+    
+    public static function atualizarContato($id, $data)
+    {
+
+    }
+
+    public function deletarContato($id)
+    {
+        try {
+            $contato = $this->contatoModel->getContatoById($id);
+    
+            if (!$contato) {
+                return json_encode(['error' => 'Contato não encontrado']);
+            }
+    
+            $this->contatoModel->deleteContato($contato);
+    
+            return json_encode(['message' => 'Contato deletado']);
+        } catch (\Exception $e) {
+            return json_encode(['error' => $e->getMessage()]);
+        }
     }
 }
