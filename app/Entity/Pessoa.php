@@ -47,13 +47,23 @@ class Pessoa
         return $this->contatos;
     }
 
+    public function getNome(): string
+    {
+        return $this->nome;
+    }
+    
     public function setNome($nome) 
     {
         $this->nome = $nome;    
     }
-
+    
     public function setCpf($cpf) 
     {
         $this->cpf = $cpf;    
+    }
+
+    public function getCpf(): string
+    {
+        return $this->cpf;
     }
 }

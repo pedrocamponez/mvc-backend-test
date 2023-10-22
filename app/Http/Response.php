@@ -27,7 +27,7 @@ class Response
      * Conteudo do Response
      * @var mixed
      */
-    private $content;
+    public $content;
 
     /**
      * Metodo responsavel por iniciar a classe e definir os valores
@@ -82,11 +82,34 @@ class Response
     {
         $this->sendHeaders();
 
-        switch ($this->contentType){
+        switch ($this->contentType) {
             case 'text/html':
-                echo $this->content;
-                exit;
+                echo $this->getContentAsString();
+                break;
+            case 'application/json':
+                echo json_encode($this->content);
+                break;
+            default:
+                echo 'Content Type nao suportado';
         }
-        
+
+        if (is_callable($this->content)) {
+            $content = call_user_func($this->content);
+        }
+
+        exit;
+    }
+
+    /**
+     * Metodo responsavel por retornar o conteudo como string
+     * @return string
+     */
+    private function getContentAsString()
+    {
+        if (is_array($this->content) || is_object($this->content)) {
+            return json_encode($this->content);
+        }
+
+        return (string) $this->content;
     }
 }

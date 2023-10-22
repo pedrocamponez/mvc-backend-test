@@ -166,6 +166,8 @@ class Router
                 }
 
                 // Metodo nao existe ou nao eh permitido
+                echo $this->request->getUri(); // Print requested URL
+
                 throw new Exception("Metodo nao permitido", 405);
             }
         }

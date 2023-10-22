@@ -3,24 +3,39 @@
 namespace App\Controller\Pages;
 
 use \App\Utils\View;
-use \App\Entity\Pessoa;
+use \App\Model\PessoaModel;
+use App\Helper as HelperAlias;
+use App\Entity\Pessoa;
 
 class Pessoas extends Page
 {
 
-    /**
-     * Metodo responsavel por retornar o conteudo da view na Homepage
-     * @return string
-     */
+    private $pessoaModel;
+
+    public function __construct(PessoaModel $pessoaModel)
+    {
+        $this->pessoaModel = $pessoaModel;
+    }
+
+    // public function getPessoas()
+    // {
+    //     $obPessoa = new Pessoa('Carolina Burni', 'xdxdxdxd');;
+
+    //     $content = View::render('Pages/pessoas', [
+    //         'name' => $obPessoa->nome,
+    //         'cpf' => $obPessoa->cpf
+    //     ]);
+
+    //     return parent::getPage('Pessoas - Magazord Backend', $content);
+    // }
     public static function getPessoas()
     {
-        $obPessoa = new Pessoa('Carolina Burni', 'xdxdxdxd');;
-
+        
         $content = View::render('Pages/pessoas', [
-            'name' => $obPessoa->nome,
-            'cpf' => $obPessoa->cpf
+            // 'pessoas' => $pessoasData
         ]);
 
         return parent::getPage('Pessoas - Magazord Backend', $content);
     }
+
 }

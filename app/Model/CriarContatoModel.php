@@ -1,10 +1,10 @@
 <?php
 namespace App\Model;
 
-use App\Entity\Pessoa;
+use App\Entity\Contato;
 use Doctrine\ORM\EntityManagerInterface;
 
-class CriarPessoaModel
+class CriarContatoModel
 {
     private $entityManager;
 
@@ -13,13 +13,13 @@ class CriarPessoaModel
         $this->entityManager = $entityManager;
     }
 
-    public function criarPessoa($nome, $cpf)
+    public function criarContato($nome, $descricao, $tipo)
     {
-        $pessoa = new Pessoa($nome, $cpf);
+        $contato = new Contato($nome, $descricao, $tipo);
 
-        $this->entityManager->persist($pessoa);
+        $this->entityManager->persist($contato);
         $this->entityManager->flush();
 
-        return $pessoa;
+        return $contato;
     }
 }

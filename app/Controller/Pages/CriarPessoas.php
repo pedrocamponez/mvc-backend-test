@@ -4,6 +4,7 @@ namespace App\Controller\Pages;
 use App\Model\CriarPessoaModel;
 use App\Http\Response;
 use App\Utils\View;
+use App\Helper as HelperAlias;
 
 class CriarPessoas extends Page
 {
@@ -15,7 +16,7 @@ class CriarPessoas extends Page
     }
 
     /**
-     * Metodo responsavel por retornar o conteudo da view de Contatos
+     * Metodo responsavel por retornar o conteudo da view de Pessoas
      * @return string
      */
     public static function getCriarPessoas()
@@ -25,12 +26,15 @@ class CriarPessoas extends Page
         return parent::getPage('Criar uma pessoa - Magazord Backend', $content);
     }
 
-    public function criarPessoa($data)
+    public static function criarPessoa($data) 
     {
         $nome = $data['nome'];
         $cpf = $data['CPF'];
 
-        $pessoa = $this->pessoaModel->criarPessoa($nome, $cpf);
+        $entityManager = HelperAlias\EntityManagerCreator::createEntityManager();
+
+        $model = new CriarPessoaModel($entityManager);
+        $model->criarPessoa($nome, $cpf);
         
         return new Response(200, 'Pessoa criada com sucesso!');
     }

@@ -8,7 +8,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 $entityManager = EntityManagerCreator::createEntityManager();
 
-$pessoa = new Pessoa('Pedro Camponez', '12345678910'); // se passar os argumentos como $argv[0], $argv[1], etc, entao podemos executar pela linha de comando
+$pessoa = new Pessoa('Pedro Camponez', '12345678910');
 
 $pessoa = new Pessoa('Pedro Teste', '12345678910');
 

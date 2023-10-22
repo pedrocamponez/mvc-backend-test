@@ -1,10 +1,11 @@
 <?php
+
 namespace App\Model;
 
 use App\Entity\Pessoa;
 use Doctrine\ORM\EntityManagerInterface;
 
-class CriarPessoaModel
+class PessoaModel
 {
     private $entityManager;
 
@@ -13,13 +14,8 @@ class CriarPessoaModel
         $this->entityManager = $entityManager;
     }
 
-    public function criarPessoa($nome, $cpf)
+    public function getPessoas()
     {
-        $pessoa = new Pessoa($nome, $cpf);
-
-        $this->entityManager->persist($pessoa);
-        $this->entityManager->flush();
-
-        return $pessoa;
+        return $this->entityManager->getRepository(Pessoa::class)->findAll();
     }
 }

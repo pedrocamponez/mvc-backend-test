@@ -21,26 +21,3 @@ foreach ($pessoaLista as $pessoa) {
 
     echo implode(', ', $pessoa->mostrarContatos()->map(fn (Contato $contato) => $contato->nome)->toArray());
 }
-
-// $pessoaRepository->find(2); retorna uma pessoa pelo id
-
-/**
- * findBy retorna pelo parametro passado no array (pelo nome, pelo cpf, etc)
- * public function findBy(
- *      array $criteria,
- *      ?array $orderBy = null,
- *      ?int $limit = null,
- *      ?int $offset = null
- * )
- */
-// $pessoaRepository->findBy([
-//     'nome' => 'Pedro'
-// ]);
-
-/**
- * findOneBy retorna o primeiro usuario encontrado com aquele criterio passado (nome, cpf)
- */
-// $pessoaRepository->findOneBy([
-//     'nome' => 'Pedro'
-// ]);
-

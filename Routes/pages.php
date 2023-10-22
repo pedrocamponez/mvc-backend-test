@@ -2,7 +2,6 @@
 
 use \App\Http\Response;
 use \App\Controller\Pages;
-use \App\Model;
 
 // Rota para home
 $obRouter->get('/', [
@@ -34,8 +33,15 @@ $obRouter->get('/criar-pessoas', [
 
 // Rota para submit de criar uma pessoa
 $obRouter->post('/criar-pessoas', [
-    function ($data) {
-        return new Response(200, Model\CriarPessoaModel::criarPessoa($data));
+    function () {
+        $data = $_POST ?? null;
+        // $cpf = $_POST['CPF'] ?? null;
+        // var_dump($data);
+        if ($data) {
+            return new Response(200, Pages\CriarPessoas::criarPessoa($data));
+        } else {
+            echo 'Campos obrigatórios não foram preenchidos';
+        }
     }
 ]);
 
@@ -55,10 +61,14 @@ $obRouter->get('/criar-contatos', [
 
 // Rota para submit e criar um contato
 $obRouter->post('/criar-contatos', [
-    function ($request) {
-        echo "<pre>";
-        print_r($request);
-        echo "</pre>";
-        return new Response(200, Pages\CriarContatos::getCriarContatos());
+    function () {
+        $data = $_POST ?? null;
+        // $cpf = $_POST['CPF'] ?? null;
+        // var_dump($data);
+        if ($data) {
+            return new Response(200, Pages\CriarContatos::criarContato($data));
+        } else {
+            echo 'Campos obrigatórios não foram preenchidos';
+        }
     }
 ]);
