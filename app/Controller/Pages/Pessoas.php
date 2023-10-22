@@ -17,22 +17,32 @@ class Pessoas extends Page
         $this->pessoaModel = $pessoaModel;
     }
 
-    // public function getPessoas()
-    // {
-    //     $obPessoa = new Pessoa('Carolina Burni', 'xdxdxdxd');;
+    public static function getPessoasHtml()
+    {
 
-    //     $content = View::render('Pages/pessoas', [
-    //         'name' => $obPessoa->nome,
-    //         'cpf' => $obPessoa->cpf
-    //     ]);
+        $pessoas = '';
+        $entityManager = HelperAlias\EntityManagerCreator::createEntityManager();
+        
+        // Get the list of pessoas from the database
+        $pessoaModel = new PessoaModel($entityManager);
+        $pessoasData = $pessoaModel->getPessoas();
+    
+        foreach ($pessoasData as $pessoa) {
+            $pessoas .= View::render('Pages/single/single-pessoa', [
+                'nome' => $pessoa->getNome(),
+                'cpf' => $pessoa->getCpf()
+            ]);
+        }
+    
+        return $pessoas;
+    }    
 
-    //     return parent::getPage('Pessoas - Magazord Backend', $content);
-    // }
     public static function getPessoas()
     {
+        $pessoasHtml = self::getPessoasHtml();
         
         $content = View::render('Pages/pessoas', [
-            // 'pessoas' => $pessoasData
+            'pessoas' => $pessoasHtml
         ]);
 
         return parent::getPage('Pessoas - Magazord Backend', $content);

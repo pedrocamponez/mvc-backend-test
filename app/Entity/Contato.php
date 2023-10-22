@@ -31,4 +31,34 @@ class Contato
     {
         $this->pessoa = $pessoa;
     }
+
+    public function getNome(): string
+    {
+        return $this->nome;
+    }
+    
+    public function setNome($nome) 
+    {
+        $this->nome = $nome;    
+    }
+    
+    public function setDescricao($descricao) 
+    {
+        $this->descricao = $descricao;    
+    }
+
+    public function getDescricao(): string
+    {
+        return $this->descricao;
+    }
+
+    public function setTipo($tipo) 
+    {
+        $this->tipo = $tipo;    
+    }
+
+    public function getTipo(): string
+    {
+        return $this->tipo;
+    }
 }

@@ -1,15 +1,15 @@
 <h1>Pessoas</h1>
 
 <div class="input-group rounded">
-    <form action="" method="post">
+    <form action="" method="post" onsubmit="return false;">
 
         <div class="form-group mb-3">
             <label>Digite o nome da pessoa a buscar</label>
-            <input type="text" class="form-control" name="nome" required>
+            <input type="text" id="search-input" class="form-control" name="nome" required>
         </div>
 
         <div class="form-group mt-3">
-            <button type="submit" class="btn btn-success">Buscar</button>
+            <button type="submit" class="btn btn-success" id="search-button">Buscar</button>
         </div>
 
     </form>
@@ -17,13 +17,32 @@
 <hr>
 <section id="pessoas">
 
-    <div class="card text-dark mb-3">
-        <h5 class="card-header">{{nome}}</h5>
-        <div class="card-body">
-            {{cpf}}
-            <hr>
-            {{qualquer_coisa}}
-        </div>
-    </div>
+    {{pessoas}}
 
 </section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Event listener for the search button click
+        $('#search-button').click(function() {
+            // Get the user input from the search input field
+            var searchQuery = $('#search-input').val().toLowerCase();
+
+            // Loop through each pessoa card and hide/show based on the search query
+            $('.card').each(function() {
+                var pessoaName = $(this).find('.card-header').text().toLowerCase();
+                var pessoaCpf = $(this).find('.card-body').text().toLowerCase();
+                
+                // Check if the pessoa's name or CPF contains the search query
+                if (pessoaName.includes(searchQuery) || pessoaCpf.includes(searchQuery)) {
+                    // Show the card if it matches the search query
+                    $(this).show();
+                } else {
+                    // Hide the card if it does not match the search query
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
