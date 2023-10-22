@@ -24,22 +24,16 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
-        // Event listener for the search button click
         $('#search-button').click(function() {
-            // Get the user input from the search input field
             var searchQuery = $('#search-input').val().toLowerCase();
 
-            // Loop through each pessoa card and hide/show based on the search query
             $('.card').each(function() {
                 var pessoaName = $(this).find('.card-header').text().toLowerCase();
                 var pessoaCpf = $(this).find('.card-body').text().toLowerCase();
                 
-                // Check if the pessoa's name or CPF contains the search query
                 if (pessoaName.includes(searchQuery) || pessoaCpf.includes(searchQuery)) {
-                    // Show the card if it matches the search query
                     $(this).show();
                 } else {
-                    // Hide the card if it does not match the search query
                     $(this).hide();
                 }
             });
